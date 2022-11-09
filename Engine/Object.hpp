@@ -13,6 +13,11 @@ public:
 
 public:
     virtual String ToString() = 0;
+    friend std::wostream& operator<<(std::wostream& os, Object& object)
+    {
+        os << object.ToString();
+        return os;
+    }
 };
 
 _MTE_END
