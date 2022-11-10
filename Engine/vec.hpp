@@ -31,55 +31,49 @@ public:
 // Operators
 #pragma region Operators
 public:
-    vec2 operator+(vec2& v) {
-        return vec2(x + v.x, y + v.y);
-    }
-    vec2& operator+=(vec2& v) {
+    vec2 operator+(vec2& v) { return vec2(x + v.x, y + v.y); }
+    vec2& operator+=(vec2& v)
+    {
         x += v.x;
         y += v.y;
         return *this;
     }
 
-    vec2 operator-(vec2& v) {
-        return vec2(x - v.x, y - v.y);
-    }
-    vec2& operator-=(vec2& v) {
+    vec2 operator-(vec2& v) { return vec2(x - v.x, y - v.y); }
+    vec2& operator-=(vec2& v)
+    {
         x -= v.x;
         y -= v.y;
         return *this;
     }
 
-    vec2 operator+(T s) {
-        return vec2(x + s, y + s);
-    }
-    vec2& operator+=(T s) {
+    vec2 operator+(T s) { return vec2(x + s, y + s); }
+    vec2& operator+=(T s)
+    {
         x += s;
         y += s;
         return *this;
     }
 
-    vec2 operator-(T s) {
-        return vec2(x - s, y - s);
-    }
-    vec2& operator-=(T s) {
+    vec2 operator-(T s) { return vec2(x - s, y - s); }
+    vec2& operator-=(T s)
+    {
         x -= s;
         y -= s;
         return *this;
     }
 
-    vec2 operator*(T s) {
-        return vec2(x * s, y * s);
-    }
-    vec2& operator*=(T s) {
+    vec2 operator*(T s) { return vec2(x * s, y * s); }
+    vec2& operator*=(T s)
+    {
         x *= s;
         y *= s;
         return *this;
     }
 
-    vec2 operator/(T s) {
-        return vec2(x / s, y / s);
-    }
-    vec2& operator/=(T s) {
+    vec2 operator/(T s) { return vec2(x / s, y / s); }
+    vec2& operator/=(T s)
+    {
         x /= s;
         y /= s;
         return *this;
@@ -91,6 +85,18 @@ public:
     {
         return std::sqrt(x * x + y * y);
     }
+
+    vec2& Normalize()
+    {
+        if (Length() == 0) return *this;
+        *this *= (1.0 / Length());
+        return *this;
+    }
+
+    T Distance(const vec2& v)
+    {
+        return vec2(v.x - x, v.y - y).Length();
+    }
 #pragma endregion Methods
 
 public:
@@ -101,6 +107,13 @@ public:
         return ss.str();
     }
 };
+
+#pragma region Vectors
+
+using vec2f = vec2<float32>;
+using vec2d = vec2<float64>;
+
+#pragma endregion Vectors
 
 _MTE_END
 
