@@ -6,6 +6,15 @@
 
 _MTE_BEGIN
 
+#ifndef DECLARE_WOSTREAM_OPERATOR
+#define DECLARE_WOSTREAM_OPERATOR(class) \
+public: friend std::wostream& operator<<(std::wostream& os, class& object) \
+{ \
+    os << object.ToString(); \
+    return os; \
+}
+#endif
+
 class Object
 {
 public:
@@ -13,11 +22,7 @@ public:
 
 public:
     virtual String ToString() = 0;
-    friend std::wostream& operator<<(std::wostream& os, Object& object)
-    {
-        os << object.ToString();
-        return os;
-    }
+    DECLARE_WOSTREAM_OPERATOR(Object)
 };
 
 _MTE_END

@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "mtedef.hpp"
+#include "Utils.hpp"
 #include "Object.hpp"
 
 _MTE_BEGIN
@@ -103,9 +104,11 @@ public:
     String ToString()
     {
         std::wstringstream ss;
-        ss << L"vec2 { " << x << L"; " << y << L" }";
+        ss << L"vec2<" << utils::GetTypeName(typeid(T)) << L"> { " << x << L"; " << y << L" }";
         return ss.str();
     }
+
+    DECLARE_WOSTREAM_OPERATOR(mte::vec2<T>)
 };
 
 #pragma region Vectors
